@@ -1,1 +1,3 @@
-exports.port = 3030;
+let port = process.env.PORT || 3030;
+
+exports.port = port;
