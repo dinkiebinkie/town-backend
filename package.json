@@ -12,12 +12,13 @@
   },
   "devDependencies": {
     "eslint": "^5.9.0",
-    "eslint-plugin-node": "^8.0.0"
+    "eslint-plugin-node": "^8.0.0",
+    "nodemon": "^1.19.3"
   },
   "engines": {
     "node": ">=6.0.0"
   },
   "scripts": {
-    "start": "node index.js"
+    "start": "nodemon"
   }
 }
