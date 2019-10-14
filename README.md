@@ -30,4 +30,4 @@ Index.js is entrance point obvs.
 TweetJobs - when tweets are generated, store the jobs here.
 Bots - store all of the bots we have here
 Tweets - All of the tweets that have been generated, to be tweeted soon
-TweetDumpster - backlog of recently generated tweets, for live feed on binkie.town
+TweetPoopDeck - backlog of recently generated tweets, for live feed on binkie.town. To be deleted soon
