@@ -21,6 +21,13 @@ Please see assets/serverDiagrams
 5. ML generates array of tweet strings
 6. Ensure Tweets aren't naughty and ready for storage
 7. tweet
-8. API call to twitter to get 72 hrs of tweets/max 25, for binkie.town live feed -> ping socket.io
-9. Delete this tweeted tweet from DB
-10. Restart Timer
+8. Send Tweet to the dump - sit in 72 hr / 50 tweet max backlog for live stream on binkie.town. ping socket.io
+9. Restart Timer
+
+### Database
+
+Index.js is entrance point obvs.
+TweetJobs - when tweets are generated, store the jobs here.
+Bots - store all of the bots we have here
+Tweets - All of the tweets that have been generated, to be tweeted soon
+TweetDumpster - backlog of recently generated tweets, for live feed on binkie.town
