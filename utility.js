@@ -1,5 +1,5 @@
 // helper functions ...?
-
+const uuidv1 = require("uuid/v1");
 const bots = require("./bots");
 const naughtyWords = require("./data/naughtyWords");
 
@@ -28,4 +28,8 @@ function isTweetNaughty(tweet) {
   }
 
   return false;
+}
+
+function generateRandomID() {
+  return uuidv1();
 }
