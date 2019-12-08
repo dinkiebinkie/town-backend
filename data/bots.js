@@ -20,12 +20,11 @@ module.exports = [
       access_token_secret:
         process.env.TWITTER_ACCESS_TOKEN_SECRET_FUTURISTIC_BABY_NAMES
     },
-    videoUrl: "", // video related to this bot on my YT channel xSZ
-    airtable_base: "app4EtGrcZkFCVsk0"
+    videoUrl: "" // video related to this bot on my YT channel xSZ
   },
   {
     bot_id: 1,
-    bot_name_url: "inspirational_quotes",
+    bot_name_url: "inspirational_quotes", // DB Base name must be this
     bot_name: "Inspirational Quotes",
     description: "The inspierational quotes i leik",
     tweet_beginnings: [],
