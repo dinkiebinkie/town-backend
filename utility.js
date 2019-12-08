@@ -1,6 +1,6 @@
 // helper functions ...?
-const uuidv1 = require("uuid/v1");
-const bots = require("./bots");
+const uuidv4 = require("uuid/v4");
+const bots = require("./data/bots");
 const naughtyWords = require("./data/naughtyWords");
 
 // set timeout for next action/tweet
@@ -31,5 +31,7 @@ function isTweetNaughty(tweet) {
 }
 
 function generateRandomID() {
-  return uuidv1();
+  return uuidv4();
 }
+
+exports.generateRandomID = generateRandomID;

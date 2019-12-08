@@ -1,7 +1,6 @@
 module.exports = [
   {
-    bot_id: 0,
-    bot_name_url: "futuristic_baby_names",
+    bot_id: "futuristic_baby_names",
     bot_name: "Futuristic Baby Names",
     description: "Predicting baby names from the future",
     tweet_beginnings: [],
@@ -23,8 +22,7 @@ module.exports = [
     videoUrl: "" // video related to this bot on my YT channel xSZ
   },
   {
-    bot_id: 1,
-    bot_name_url: "inspirational_quotes", // DB Base name must be this
+    bot_id: "inspirational_quotes",
     bot_name: "Inspirational Quotes",
     description: "The inspierational quotes i leik",
     tweet_beginnings: [],
