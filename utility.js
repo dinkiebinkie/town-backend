@@ -34,4 +34,31 @@ function generateRandomID() {
   return uuidv4();
 }
 
+async function getTweetsFromFile(bot_id) {
+  return new Promise((res, rej) => {
+    console.log(bot_id);
+    const tweets = [];
+    const text_file_path = `./data/tweets_txt/${bot_id}.txt`;
+    const reader = new FileReader();
+
+    reader.onload = e => {
+      const file = e.target.result;
+      const allLines = file.split(/\r?\n/);
+      let lineIndex = 0;
+      for (let i = 0; i < 100; i++) {
+        lineIndex++;
+        if (lineIndex >= 100) break;
+        return tweets.push(allLines[i]);
+      }
+    };
+
+    reader.onerror = e => {
+      rej(e.target.error.name);
+    };
+
+    reader.readAsText(text_file_path).then(() => res(tweets));
+  });
+}
+
 exports.generateRandomID = generateRandomID;
+exports.getTweetsFromFile = getTweetsFromFile;

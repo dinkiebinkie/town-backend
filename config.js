@@ -3,7 +3,7 @@ let port = process.env.PORT || 3030;
 // Where should we get Tweet from?
 // If true, Airtable DB
 // If false, should point to local file
-const databaseIsOn = true;
+const databaseIsOn = false;
 
 let svcUrl = "http://localhost:8000/";
 
