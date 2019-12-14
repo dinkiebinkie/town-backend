@@ -1,6 +1,6 @@
-module.exports = async function getTweetsFromFile(bot_id) {
+module.exports = async function getTweetsFromFile(bot_id, numberOfTweets) {
   return new Promise((res, rej) => {
-    const tweets = [];
+    let tweets = [];
     let lineIndex = 0;
 
     const lineReader = require("readline").createInterface({
@@ -9,11 +9,17 @@ module.exports = async function getTweetsFromFile(bot_id) {
 
     lineReader
       .on("line", line => {
-        tweets.push(line);
-        lineIndex++;
-        if (lineIndex >= 100) {
+        if (numberOfTweets === 1) {
+          tweets = line;
           lineReader.close();
           lineReader.removeAllListeners();
+        } else {
+          tweets.push(line);
+          lineIndex++;
+          if (lineIndex >= numberOfTweets) {
+            lineReader.close();
+            lineReader.removeAllListeners();
+          }
         }
       })
       .on("close", () => {

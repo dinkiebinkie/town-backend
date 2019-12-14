@@ -27,42 +27,48 @@ bots.forEach(bot => {
 
     const listOfTweets = config.databaseIsOn
       ? await airtable.fetchFirstPageOfTweets(bot.airtable_base, bot_id)
-      : await getTweetsFromFile(bot_id);
+      : await getTweetsFromFile(bot_id, 100);
 
     return res.send(bot_name + "<br/> " + listOfTweets.join("<br/>"));
   });
+
+  // Get a tweet then tweet it
+  router.get(`/${bot_id}/tweet`, async (req, res) => {
+    // first fetch tweets from DB or file
+    const tweet = config.databaseIsOn
+      ? await airtable.fetchFirstPageOfTweets(bot.airtable_base, bot_id)
+      : await getTweetsFromFile(bot_id, 1);
+
+    console.log(tweet);
+
+    return res.send(bot.bot_name);
+  });
+
+  // if (config.databaseIsOn) {
+  //   console.log('database is on')
+  // } else {
+  //   console.log('database is off')
+
+  // }
 
   // add tweets to DB
-  router.get(`/add-new-tweets/${bot_id}`, async (req, res) => {
-    // fetch ml generated tweeets
-    // const mlTweets = await fetchMlTweets();
-    const mlTweets = [
-      "hello etst tweet",
-      "hello etst tweet",
-      "hello etst tweet"
-    ];
+  // router.get(`/add-new-tweets/${bot_id}`, async (req, res) => {
+  //   // fetch ml generated tweeets
+  //   // const mlTweets = await fetchMlTweets();
+  //   const mlTweets = [
+  //     "hello etst tweet",
+  //     "hello etst tweet",
+  //     "hello etst tweet"
+  //   ];
 
-    // push new tweets to db
-    const sendTweetsToDB = await airtable.addTweetsToAirtable(
-      bot.airtable_base,
-      bot_id,
-      mlTweets
-    );
-
-    return res.send(bot_name + "<br/> " + listOfTweets.join("<br/>"));
-  });
-
-  // Get a tweet from DB
-  // router.get(`/tweet/${bot_id}`, (req, res) => {
-  //   const base = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY }).base(
-  //     bot.airtable_base
+  //   // push new tweets to db
+  //   const sendTweetsToDB = await airtable.addTweetsToAirtable(
+  //     bot.airtable_base,
+  //     bot_id,
+  //     mlTweets
   //   );
-  //   // first fetch tweets from DB
 
-  //   // Check Length of Tweets
-
-  //   // Display tweets
-  //   return res.send(bot.bot_name);
+  //   return res.send(bot_name + "<br/> " + listOfTweets.join("<br/>"));
   // });
 });
 
