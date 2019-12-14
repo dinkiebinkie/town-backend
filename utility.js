@@ -2,6 +2,7 @@
 const uuidv4 = require("uuid/v4");
 const bots = require("./data/bots");
 const naughtyWords = require("./data/naughtyWords");
+const fs = require("fs");
 
 // set timeout for next action/tweet
 function setTimer(id) {
@@ -36,27 +37,25 @@ function generateRandomID() {
 
 async function getTweetsFromFile(bot_id) {
   return new Promise((res, rej) => {
-    console.log(bot_id);
     const tweets = [];
-    const text_file_path = `./data/tweets_txt/${bot_id}.txt`;
-    const reader = new FileReader();
+    let lineIndex = 0;
 
-    reader.onload = e => {
-      const file = e.target.result;
-      const allLines = file.split(/\r?\n/);
-      let lineIndex = 0;
-      for (let i = 0; i < 100; i++) {
+    const lineReader = require("readline").createInterface({
+      input: require("fs").createReadStream(`./data/tweets_txt/${bot_id}.txt`)
+    });
+
+    lineReader
+      .on("line", line => {
+        console.log("line", line);
+
+        tweets.push(line);
         lineIndex++;
-        if (lineIndex >= 100) break;
-        return tweets.push(allLines[i]);
-      }
-    };
-
-    reader.onerror = e => {
-      rej(e.target.error.name);
-    };
-
-    reader.readAsText(text_file_path).then(() => res(tweets));
+        if (lineIndex >= 100) {
+          lineReader.close();
+          res(tweets);
+        }
+      })
+      .on("close", line => res(tweets));
   });
 }
 

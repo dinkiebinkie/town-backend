@@ -3,7 +3,7 @@ const router = express.Router();
 const bots = require("../data/bots");
 const airtable = require("../database/airtable");
 const config = require("../config");
-const utility = require("../utility");
+const getTweetsFromFile = require("../tweet/getTweetsFromFile");
 
 // This file is for getting tweets form the DB
 // If there are no tweets in the DB fetch from ML
@@ -23,11 +23,11 @@ bots.forEach(bot => {
   // fetch all tweets from DB for showing on page
   router.get(`/${bot_id}`, async (req, res) => {
     // fetch tweeets
+    console.log(`fetching tweets for ${bot_id}`);
+
     const listOfTweets = config.databaseIsOn
       ? await airtable.fetchFirstPageOfTweets(bot.airtable_base, bot_id)
-      : await utility.getTweetsFromFile(bot_id);
-
-    console.log(listOfTweets);
+      : await getTweetsFromFile(bot_id);
 
     return res.send(bot_name + "<br/> " + listOfTweets.join("<br/>"));
   });
