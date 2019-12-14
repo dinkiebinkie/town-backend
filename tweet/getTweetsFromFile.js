@@ -9,17 +9,11 @@ module.exports = async function getTweetsFromFile(bot_id, numberOfTweets) {
 
     lineReader
       .on("line", line => {
-        if (numberOfTweets === 1) {
-          tweets = line;
+        tweets.push(line);
+        lineIndex++;
+        if (lineIndex >= numberOfTweets) {
           lineReader.close();
           lineReader.removeAllListeners();
-        } else {
-          tweets.push(line);
-          lineIndex++;
-          if (lineIndex >= numberOfTweets) {
-            lineReader.close();
-            lineReader.removeAllListeners();
-          }
         }
       })
       .on("close", () => {

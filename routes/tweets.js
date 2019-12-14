@@ -4,6 +4,7 @@ const bots = require("../data/bots");
 const airtable = require("../database/airtable");
 const config = require("../config");
 const getTweetsFromFile = require("../tweet/getTweetsFromFile");
+const getTweetToTweet = require("../tweet/getTweetToTweet");
 
 // This file is for getting tweets form the DB
 // If there are no tweets in the DB fetch from ML
@@ -37,11 +38,11 @@ bots.forEach(bot => {
     // first fetch tweets from DB or file
     const tweet = config.databaseIsOn
       ? await airtable.fetchFirstPageOfTweets(bot.airtable_base, bot_id)
-      : await getTweetsFromFile(bot_id, 1);
+      : await getTweetToTweet(bot_id);
 
-    console.log(tweet);
+    console.log("retreived then deleted tweet from file,");
 
-    return res.send(bot.bot_name);
+    return res.send(bot.bot_name, "<br/>", tweet);
   });
 
   // if (config.databaseIsOn) {
