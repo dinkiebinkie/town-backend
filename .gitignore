@@ -1,3 +1,4 @@
 node_modules
 .env
 data/naughtyWords.js
+*.txt
