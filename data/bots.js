@@ -2,7 +2,6 @@ module.exports = [
   {
     bot_id: "futuristic_baby_names",
     bot_name: "Futuristic Baby Names",
-    description: "Predicting baby names from the future",
     tweet_beginnings: [],
     bot_type: "twitter",
     bot_url: "https://twitter.com/BabyFuturistic/", // where does the bot live
@@ -24,7 +23,6 @@ module.exports = [
   {
     bot_id: "inspirational_quotes",
     bot_name: "Inspirational Quotes",
-    description: "The inspierational quotes i leik",
     tweet_beginnings: [],
     bot_type: "twitter",
     bot_url: "https://twitter.com/InspirationalQuotes/", // where does the bot live
@@ -35,11 +33,11 @@ module.exports = [
     hashtags: ["binkie", "baby"], // any hashtags you think the bot should include if the tweet is short enough or for favoriting
     hashtagPercentage: 75, // % of the time you think the bot should send a tweet
     authentication: {
-      consumer_key: process.env.TWITTER_API_KEY_FUTURISTIC_BABY_NAMES,
-      consumer_secret: process.env.TWITTER_API_SECRET_KEY_FUTURISTIC_BABY_NAMES,
-      access_token_key: process.env.TWITTER_ACCESS_TOKEN_FUTURISTIC_BABY_NAMES,
+      consumer_key: process.env.TWITTER_API_KEY_INSPIRATIONAL_QUOTES,
+      consumer_secret: process.env.TWITTER_API_SECRET_KEY_INSPIRATIONAL_QUOTES,
+      access_token_key: process.env.TWITTER_ACCESS_TOKEN_INSPIRATIONAL_QUOTES,
       access_token_secret:
-        process.env.TWITTER_ACCESS_TOKEN_SECRET_FUTURISTIC_BABY_NAMES
+        process.env.TWITTER_ACCESS_TOKEN_SECRET_INSPIRATIONAL_QUOTES
     },
     videoUrl: "", // video related to this bot on my YT channel xSZ
     airtable_base: "app4EtGrcZkFCVsk0"
