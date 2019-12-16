@@ -4,7 +4,8 @@ const bots = require("../data/bots");
 const airtable = require("../database/airtable");
 const config = require("../config");
 const getTweetsFromFile = require("../tweet/getTweetsFromFile");
-const getTweetToTweet = require("../tweet/getTweetToTweet");
+const fetchSingleTweetToTweet = require("../tweet/fetchSingleTweetToTweet");
+const tellTwitterToTweet = require("../tweet/tellTwitterToTweet");
 
 // This file is for getting tweets form the DB
 // If there are no tweets in the DB fetch from ML
@@ -38,11 +39,15 @@ bots.forEach(bot => {
     // first fetch tweets from DB or file
     const tweet = config.databaseIsOn
       ? await airtable.fetchFirstPageOfTweets(bot.airtable_base, bot_id)
-      : await getTweetToTweet(bot_id);
+      : await fetchSingleTweetToTweet(bot_id);
 
     console.log("retreived then deleted tweet from file,");
+    // Send tweet to twitter bot to tweet
+    const pleaseTweet = await tellTwitterToTweet(tweet, bot_id);
 
-    return res.send(bot.bot_name, "<br/>", tweet);
+    console.log(pleaseTweet);
+
+    return res.send(bot.bot_name, "<br/>", pleaseTweet);
   });
 
   // if (config.databaseIsOn) {
@@ -74,37 +79,3 @@ bots.forEach(bot => {
 });
 
 module.exports = router;
-
-// const T = new Twitter(bots.futuristic_baby_names.authentication);
-//   const params = {
-//     q: "#nodejs",
-//     count: 10,
-//     result_type: "recent",
-//     lang: "en"
-//   };
-//   T.get("search/tweets", params, function(err, data, response) {
-//     if (!err) {
-//       for (let i = 0; i < data.statuses.length; i++) {
-//         // Get the tweet Id from the returned data
-//         let id = { id: data.statuses[i].id_str };
-//         // Try to Favorite the selected Tweet
-//         T.post("favorites/create", id, function(err, response) {
-//           // If the favorite fails, log the error message
-//           if (err) {
-//             console.log(err[0].message);
-//           }
-//           // If the favorite is successful, log the url of the tweet
-//           else {
-//             let username = response.user.screen_name;
-//             let tweetId = response.id_str;
-//             console.log(
-//               "Favorited: ",
-//               `https://twitter.com/${username}/status/${tweetId}`
-//             );
-//           }
-//         });
-//       }
-//     } else {
-//       console.log(err);
-//     }
-//   });

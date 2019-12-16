@@ -30,7 +30,16 @@ module.exports = [
     ml_notebook: "path/of/ML", // who's ur daddy botty boy
     tweet_storage_length: 1000, // how many tweets are requested if it's running low
     timer: 10, // how long (hours) until next tweet? variation of 75-125%
-    hashtags: ["binkie", "baby"], // any hashtags you think the bot should include if the tweet is short enough or for favoriting
+    hashtags: [
+      "inspiration",
+      "quote",
+      "quoteoftheday",
+      "#motivation",
+      "success",
+      "wisdom",
+      "love",
+      "life"
+    ], // any hashtags you think the bot should like
     hashtagPercentage: 75, // % of the time you think the bot should send a tweet
     authentication: {
       consumer_key: process.env.TWITTER_API_KEY_INSPIRATIONAL_QUOTES,
