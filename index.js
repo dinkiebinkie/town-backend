@@ -2,6 +2,7 @@
 const express = require("express");
 require("dotenv").config();
 const config = require("./config");
+const timers = require("./tweet/timerStuff");
 // const path = require("path");
 
 // constants
@@ -21,5 +22,8 @@ const botsRoute = require("./routes/bots");
 app.use("/", index);
 app.use("/tweets", tweets);
 app.use("/bots", botsRoute);
+
+// Start timers for all bots
+timers.startTimers();
 
 app.listen(port, () => console.log(`this bad boy is running on ${port}!`));

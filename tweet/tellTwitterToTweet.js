@@ -12,7 +12,7 @@ module.exports = async function tellTwitterToTweet(tweet, bot_id) {
 
     const likeParams = {
       q: q,
-      count: 15,
+      count: bot.number_of_likes_per_tweet,
       result_type: "recent",
       lang: "en"
     };

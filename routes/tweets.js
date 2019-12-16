@@ -4,8 +4,7 @@ const bots = require("../data/bots");
 const airtable = require("../database/airtable");
 const config = require("../config");
 const getTweetsFromFile = require("../tweet/getTweetsFromFile");
-const fetchSingleTweetToTweet = require("../tweet/fetchSingleTweetToTweet");
-const tellTwitterToTweet = require("../tweet/tellTwitterToTweet");
+const fetchTweetThenTweet = require("../tweet/fetchTweetThenTweet");
 
 // This file is for getting tweets form the DB
 // If there are no tweets in the DB fetch from ML
@@ -36,17 +35,9 @@ bots.forEach(bot => {
 
   // Get a tweet then tweet it
   router.get(`/${bot_id}/tweet`, async (req, res) => {
-    // first fetch tweets from DB or file
-    const tweet = config.databaseIsOn
-      ? await airtable.fetchFirstPageOfTweets(bot.airtable_base, bot_id)
-      : await fetchSingleTweetToTweet(bot_id);
+    const didTweet = await fetchTweetThenTweet(bot_id);
 
-    // Send tweet to twitter bot to tweet
-    const pleaseTweet = await tellTwitterToTweet(tweet, bot_id);
-
-    console.log(pleaseTweet);
-
-    return res.send(bot.bot_name + "<br/>" + pleaseTweet);
+    return res.send(bot.bot_name + "<br/>Tweeted: " + didTweet);
   });
 
   // if (config.databaseIsOn) {
