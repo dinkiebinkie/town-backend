@@ -41,13 +41,12 @@ bots.forEach(bot => {
       ? await airtable.fetchFirstPageOfTweets(bot.airtable_base, bot_id)
       : await fetchSingleTweetToTweet(bot_id);
 
-    console.log("retreived then deleted tweet from file,");
     // Send tweet to twitter bot to tweet
     const pleaseTweet = await tellTwitterToTweet(tweet, bot_id);
 
     console.log(pleaseTweet);
 
-    return res.send(bot.bot_name, "<br/>", pleaseTweet);
+    return res.send(bot.bot_name + "<br/>" + pleaseTweet);
   });
 
   // if (config.databaseIsOn) {

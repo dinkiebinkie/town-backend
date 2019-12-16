@@ -6,7 +6,6 @@ module.exports = [
     bot_type: "twitter",
     bot_url: "https://twitter.com/BabyFuturistic/", // where does the bot live
     number_of_likes_per_tweet: 20, // how many tweets does the bot like when it tweets
-    ml_notebook: "path/of/ML", // who's ur daddy botty boy
     tweet_storage_length: 1000, // how many tweets are requested if it's running low
     timer: 10, // how long (hours) until next tweet? variation of 75-125%
     hashtags: ["binkie", "baby"], // any hashtags you think the bot should include if the tweet is short enough or for favoriting
@@ -27,7 +26,6 @@ module.exports = [
     bot_type: "twitter",
     bot_url: "https://twitter.com/InspirationalQuotes/", // where does the bot live
     number_of_likes_per_tweet: 20, // how many tweets does the bot like when it tweets
-    ml_notebook: "path/of/ML", // who's ur daddy botty boy
     tweet_storage_length: 1000, // how many tweets are requested if it's running low
     timer: 10, // how long (hours) until next tweet? variation of 75-125%
     hashtags: [
