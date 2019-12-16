@@ -1,5 +1,6 @@
 const bots = require("../data/bots");
 const Twitter = require("twitter");
+const config = require("../config");
 module.exports = async function tellTwitterToTweet(tweet, bot_id) {
   return new Promise((res, rej) => {
     // find this bot in bot array
@@ -7,6 +8,12 @@ module.exports = async function tellTwitterToTweet(tweet, bot_id) {
 
     // pick random hashtag from bot to like
     const q = bot.hashtags[Math.floor(Math.random() * bot.hashtags.length)];
+
+    if (config.testTweeting === true) {
+      console.log("successfully tweeted - NOT im testing", tweet);
+
+      return res(tweet);
+    }
 
     const T = new Twitter(bot.authentication);
 
@@ -55,11 +62,9 @@ module.exports = async function tellTwitterToTweet(tweet, bot_id) {
     };
 
     T.post("statuses/update", tweetParams, (err, data, response) => {
-      console.log("responseresponseresponseresponse", response.status);
-
       if (!err) {
         console.log("successfully tweeted", tweet);
-        res(tweet);
+        return res(tweet);
       } else {
         console.log(err);
       }
