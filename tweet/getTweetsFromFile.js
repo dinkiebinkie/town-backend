@@ -4,7 +4,7 @@ module.exports = async function getTweetsFromFile(bot_id, numberOfTweets) {
   return new Promise((res, rej) => {
     let tweets = [];
     let lineIndex = 0;
-
+    console.log(config.testTweeting);
     const lineReader = require("readline").createInterface({
       input: require("fs").createReadStream(
         config.testTweeting
