@@ -2,7 +2,7 @@ let port = process.env.PORT || 3030;
 
 // if testTweeting is true, don't actually do any twitter api stuff
 // otherwise go ham tweeting
-const testTweeting = true;
+const testTweeting = false;
 
 // Where should we get Tweet from?
 // If true, Airtable DB
