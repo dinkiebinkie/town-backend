@@ -2,7 +2,7 @@ const bots = require("../data/bots");
 const fetchTweetThenTweet = require("./fetchTweetThenTweet");
 
 const startTimers = () => {
-  setInterval(console.log("keeping server alive... i think?"), 1800000);
+  setInterval(() => console.log("keeping server alive... i think?"), 1800000);
   return bots.forEach(bot => restartTimer(bot));
 };
 
