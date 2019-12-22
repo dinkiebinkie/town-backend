@@ -8,7 +8,7 @@ module.exports = [
     bot_url: "https://twitter.com/BabyFuturistic/", // where does the bot live
     number_of_likes_per_tweet: 15, // how many tweets does the bot like when it tweets
     tweet_storage_length: 1000, // how many tweets are requested if it's running low
-    timer: config.testTweeting ? 5000 : 10 * 60 * 60 * 1000, // how long (ms) until next tweet? variation of 50-150%
+    timer: config.testTweeting ? 5000 : 7 * 60 * 60 * 1000, // how long (ms) until next tweet? variation of 50-150%
     hashtags: [
       "baby",
       "babyname",
@@ -36,7 +36,7 @@ module.exports = [
     bot_url: "https://twitter.com/InspirationalQuotes/", // where does the bot live
     number_of_likes_per_tweet: 15, // how many tweets does the bot like when it tweets
     tweet_storage_length: 1000, // how many tweets are requested if it's running low
-    timer: config.testTweeting ? 5000 : 10 * 60 * 60 * 1000, // how long (ms) until next tweet? variation of 50-150%
+    timer: config.testTweeting ? 5000 : 7 * 60 * 60 * 1000, // how long (ms) until next tweet? variation of 50-150%
     hashtags: [
       "inspiration",
       "quote",
