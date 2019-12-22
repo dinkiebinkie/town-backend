@@ -2,8 +2,11 @@ const bots = require("../data/bots");
 const fetchTweetThenTweet = require("./fetchTweetThenTweet");
 
 const startTimers = () => {
-  setInterval(() => console.log("keeping server alive... i think?"), 1800000);
-  return bots.forEach(bot => restartTimer(bot));
+  return bots.forEach(bot => {
+    fetchTweetThenTweet(bot.bot_id);
+    // first tweet, then run the timeout
+    return restartTimer(bot);
+  });
 };
 
 const restartTimer = bot => {
