@@ -1,4 +1,4 @@
-let port = process.env.PORT || 3030;
+let port = process.env.PORT || 3333;
 
 // if testTweeting is true, don't actually do any twitter api stuff
 // otherwise go ham tweeting
